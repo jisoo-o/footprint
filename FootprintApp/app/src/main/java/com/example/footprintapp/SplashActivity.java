@@ -15,7 +15,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         ImageView gif_image = (ImageView)findViewById(R.id.gif_image);
-        Glide.with(this).load(R.drawable.walking_unscreen).into(gif_image);
+        Glide.with(this).load(R.drawable.pupp_unscreen).into(gif_image);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -25,7 +25,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(main);
                 finish();
             }
-        }, 3000);
+        }, 4000);
     }
 
 }
