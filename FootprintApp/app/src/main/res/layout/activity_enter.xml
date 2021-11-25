@@ -39,14 +39,152 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/selectPhoto"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nickname"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        app:srcCompat="@drawable/add" />
+
+    <LinearLayout
+        android:id="@+id/infoGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectPhoto">
+
+        <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이름"
+                android:layout_marginLeft="80dp"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:id="@+id/petnameET"
+                android:layout_marginLeft="30dp"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성별"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="30dp"
+                android:layout_gravity="center_vertical"
+                android:textColor="#000000"/>
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RadioButton
+                    android:id="@+id/femaleRB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="여아"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="10dp"/>
+                <RadioButton
+                    android:id="@+id/maleRB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="남아"
+                    android:layout_marginEnd="10dp"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="나이"
+                android:layout_marginLeft="80dp"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:id="@+id/petageET"
+                android:hint="숫자만 입력해주세요"
+                android:textSize="14dp"
+                android:layout_marginLeft="30dp"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="체중"
+                android:layout_marginLeft="80dp"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:id="@+id/petweightET"
+                android:hint="숫자만 입력해주세요"
+                android:textSize="14dp"
+                android:layout_marginLeft="30dp"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/ready_btn"
         android:layout_width="180dp"
         android:background="@drawable/round_button"
         android:layout_height="wrap_content"
-        android:layout_marginTop="306dp"
+        android:layout_marginTop="70dp"
         android:text="준비됐어요!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/infoGroup" />
 </androidx.constraintlayout.widget.ConstraintLayout>
