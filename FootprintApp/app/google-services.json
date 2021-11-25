@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "911879125424",
+    "project_id": "my-footprint-d5366",
+    "storage_bucket": "my-footprint-d5366.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911879125424:android:587d80838b9d7317c43e75",
+        "android_client_info": {
+          "package_name": "com.example.footprintapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "911879125424-em2kf7cfd3f9r3mlfgclj0rbm9f51fgl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.footprintapp",
+            "certificate_hash": "acccfe16077bdf1a7fda7582ef3b9890e795d3d0"
+          }
+        },
+        {
+          "client_id": "911879125424-iof6pvos6jnfuqh1g3141chfeq0s2kem.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.footprintapp",
+            "certificate_hash": "7e6aa20c67042e31220340d4c192b59e66e5716c"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCreZsghEajzFogQArTvErEoRY8iBUKTrU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
