@@ -201,7 +201,7 @@
         android:id="@+id/ready_btn"
         android:layout_width="180dp"
         android:background="@drawable/round_button"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="70dp"
         android:text="준비됐어요!"
         app:layout_constraintEnd_toEndOf="parent"
