@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,11 +22,14 @@ public class EnterActivity extends AppCompatActivity {
     private final int GET_GALLERY_IMAGE = 200;
     private ImageView imageview;
     private Button readyBtn;
+    private EditText petNameET;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter);
+
+        petNameET = findViewById(R.id.petnameET);
 
         imageview = findViewById(R.id.selectPhoto);
         imageview.setOnClickListener(new View.OnClickListener() {
@@ -53,12 +57,14 @@ public class EnterActivity extends AppCompatActivity {
 
             Intent intent = new Intent(EnterActivity.this, HomeActivity.class);
             intent.putExtra("imageUri", selectedImageUri.toString());
+            intent.putExtra("petName", petNameET.getText().toString());
 
             readyBtn.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(EnterActivity.this, HomeActivity.class);
                     intent.putExtra("imageUri", selectedImageUri.toString());
+                    intent.putExtra("petName", petNameET.getText().toString());
                     startActivity(intent);
                 }
             });
