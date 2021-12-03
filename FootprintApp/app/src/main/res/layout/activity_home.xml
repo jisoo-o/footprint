@@ -7,7 +7,7 @@
     <FrameLayout
         android:id="@+id/petImgFrame"
         android:layout_width="match_parent"
-        android:layout_height="340dp"
+        android:layout_height="300dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,18 +34,19 @@
 
     <com.dinuscxj.progressbar.CircleProgressBar
         android:id="@+id/eat_circlebar"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petName"
-        app:progress_end_color="#ABF200"
-        app:progress_start_color="#FFBB00"
+        app:progress_end_color="#FFBB00"
+        app:progress_start_color="#E38D7F"
         app:progress_stroke_cap="round"
-        app:progress_stroke_width="15dp "
-        app:progress_text_size="30sp"
+        app:progress_stroke_width="13dp "
+        app:progress_text_size="20sp"
+        app:progress_text_color="#E38D7F"
         app:style="solid_line" />
 
     <TextView
@@ -53,11 +54,68 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:text="권장 섭취량은 28kcal이에요"
+        android:textColor="#000000"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/eat_circlebar" />
+
+    <Button
+        android:id="@+id/eat_button"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint = "#E38D7F"
+        android:text="먹자 🍏"
+        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recommend_calories" />
+
+    <com.dinuscxj.progressbar.CircleProgressBar
+        android:id="@+id/play_circlebar"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/recommend_calories"
+        app:layout_constraintTop_toBottomOf="@+id/petName"
+        app:progress_end_color="#ABF200"
+        app:progress_start_color="#408BCC"
+        app:progress_stroke_cap="round"
+        app:progress_stroke_width="13dp "
+        app:progress_text_size="20sp"
+        app:progress_text_color="#408BCC"
+        app:style="solid_line" />
+
+    <Button
+        android:id="@+id/play_button"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="#4F9ED6"
+        android:text="놀자 ⚽️"
+        app:layout_constraintHorizontal_bias="0.797"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recommend_calories" />
+
+    <TextView
+        android:id="@+id/recommend_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="16dp"
+        android:text="최소 40분은 뛰어 놀고 싶어요"
+        android:textColor="#000000"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/play_circlebar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
