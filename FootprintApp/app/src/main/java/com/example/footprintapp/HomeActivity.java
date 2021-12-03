@@ -28,7 +28,6 @@ public class HomeActivity extends AppCompatActivity {
         imageview2 = findViewById(R.id.petImg);
 
         Intent reIndent = getIntent();
-
         String text = reIndent.getStringExtra("petName");
         petname.setText(text);
 

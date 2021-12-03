@@ -1,21 +1,15 @@
 package com.example.footprintapp;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.io.ByteArrayOutputStream;
-import java.io.Serializable;
-
 
 public class EnterActivity extends AppCompatActivity {
 
@@ -23,13 +17,20 @@ public class EnterActivity extends AppCompatActivity {
     private ImageView imageview;
     private Button readyBtn;
     private EditText petNameET;
+    private TextView nicknameT;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter);
 
+        nicknameT = findViewById(R.id.nickname);
         petNameET = findViewById(R.id.petnameET);
+
+        Intent reIndent1 = getIntent();
+        String userNickname = reIndent1.getStringExtra("userName");
+        //nicknameT.setText(userNickname);
+        nicknameT.setText("jisoo");
 
         imageview = findViewById(R.id.selectPhoto);
         imageview.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +39,7 @@ public class EnterActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent. setDataAndType(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                 startActivityForResult(intent, GET_GALLERY_IMAGE);
+
             }
         });
 

@@ -59,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                 final String email = mEmailText.getText().toString().trim();
                 String pwd = mPasswordText.getText().toString().trim();
                 String pwdcheck = mPasswordcheckText.getText().toString().trim();
+                //String name = mName.getText().toString().trim();
 
 
                 if(pwd.equals(pwdcheck)) {
@@ -80,6 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 String email = user.getEmail();
                                 String uid = user.getUid();
                                 String name = mName.getText().toString().trim();
+                                //String name = user.getDisplayName();
 
                                 //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
                                 HashMap<Object,String> hashMap = new HashMap<>();
@@ -91,7 +93,9 @@ public class RegisterActivity extends AppCompatActivity {
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference reference = database.getReference("Users");
                                 reference.child(uid).setValue(hashMap);
-
+                                //닉네임 전달
+                                Intent intent2 = new Intent(RegisterActivity.this, EnterActivity.class);
+                                intent2.putExtra("userName", mName.getText().toString().trim());
 
                                 //가입이 이루어져을시 가입 화면을 빠져나감.
                                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
