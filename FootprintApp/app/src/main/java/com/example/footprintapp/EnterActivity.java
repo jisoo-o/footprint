@@ -18,6 +18,7 @@ public class EnterActivity extends AppCompatActivity {
     private Button readyBtn;
     private EditText petNameET;
     private TextView nicknameT;
+    private EditText petweightET;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -26,6 +27,7 @@ public class EnterActivity extends AppCompatActivity {
 
         nicknameT = findViewById(R.id.nickname);
         petNameET = findViewById(R.id.petnameET);
+        petweightET = findViewById(R.id.petweightET);
 
         Intent reIndent1 = getIntent();
         String userNickname = reIndent1.getStringExtra("userName");
@@ -67,6 +69,7 @@ public class EnterActivity extends AppCompatActivity {
                     Intent intent = new Intent(EnterActivity.this, HomeActivity.class);
                     intent.putExtra("imageUri", selectedImageUri.toString());
                     intent.putExtra("petName", petNameET.getText().toString());
+                    intent.putExtra("petWeight", petweightET.getText().toString());
                     startActivity(intent);
                 }
             });
