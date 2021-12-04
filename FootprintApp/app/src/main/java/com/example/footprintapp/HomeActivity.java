@@ -3,6 +3,8 @@ package com.example.footprintapp;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,11 +32,44 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
     private TextView recommendedPlay;
     private int maintenanceER;
     private int recommendPT;
-
+    private ImageButton btn_home;
+    private ImageButton btn_calendar;
+    private ImageButton btn_setting;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        btn_home = findViewById(R.id.ic_home);
+        btn_calendar = findViewById(R.id.ic_calendar);
+        btn_setting = findViewById(R.id.ic_setting);
+
+        btn_home.setSelected(true);
+        
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_home.setSelected(true);
+                btn_calendar.setSelected(false);
+                btn_setting.setSelected(false);
+            }
+        });
+        btn_calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_home.setSelected(false);
+                btn_calendar.setSelected(true);
+                btn_setting.setSelected(false);
+            }
+        });
+        btn_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_home.setSelected(false);
+                btn_calendar.setSelected(false);
+                btn_setting.setSelected(true);
+            }
+        });
 
         petname = findViewById(R.id.petName);
         imageview2 = findViewById(R.id.petImg);
