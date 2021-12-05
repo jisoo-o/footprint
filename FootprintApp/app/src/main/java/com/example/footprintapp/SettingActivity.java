@@ -1,8 +1,10 @@
 package com.example.footprintapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -21,6 +23,7 @@ public class SettingActivity extends AppCompatActivity {
     private ImageButton btn_setting;
     private ImageButton btn_logout;
     private ImageButton btn_signout;
+    private ImageButton btn_contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,7 @@ public class SettingActivity extends AppCompatActivity {
         btn_home = findViewById(R.id.ic_home);
         btn_calendar = findViewById(R.id.ic_calendar);
         btn_setting = findViewById(R.id.ic_setting);
-
+        btn_contact = findViewById(R.id.contact);
         btn_signout = findViewById(R.id.signout);
         btn_logout = findViewById(R.id.logout);
         btn_logout.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +98,21 @@ public class SettingActivity extends AppCompatActivity {
                 btn_calendar.setSelected(false);
                 btn_setting.setSelected(true);
             }
+        });
+
+        btn_contact.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick(View view) {
+            Intent email = new Intent(Intent.ACTION_SEND);
+            email.setType("plain/text");
+            String[] address = {"admin.footprint@gmail.com"};
+            email.putExtra(Intent.EXTRA_EMAIL, address);
+            email.putExtra(Intent.EXTRA_SUBJECT,"발자국 팀에게 문의하기");
+            email.putExtra(Intent.EXTRA_TEXT,"\n\n\n문의주셔서 감사합니다. 빠른 시일 내에 답변 드리겠습니다 :)");
+            startActivity(email);
+
+
+        }
         });
 
     }
