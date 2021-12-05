@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.dinuscxj.progressbar.CircleProgressBar;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 
@@ -45,6 +44,7 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
     private ImageButton btn_setting;
 
     private Button btn_eat;
+    private Button btn_play;
 
 
     @Override
@@ -125,11 +125,43 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
                         String petWeight= reIndent.getStringExtra("petWeight");
                         int petWeightInt = Integer.parseInt(petWeight);
                         maintenanceER = calculateCalories(petWeightInt);
-                        recommendPT = calculatePlaytime(petWeightInt);
-
                         eatProgess = taken * 100 / maintenanceER;
                         circleProgressBar=findViewById(R.id.eat_circlebar);
                         circleProgressBar.setProgress(eatProgess);  // 해당 퍼센트를 적용
+                    }
+
+                    @Override
+                    public void onNegativeClicked() {
+
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+        //놀자 dialog
+        btn_play = findViewById(R.id.play_button);
+        btn_play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PlayDialog dialog = new PlayDialog(HomeActivity.this);
+                //rounded 다이얼로그 띄우기 위해 drawable 추가 외에도 반드시 추가해야하는 코드
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setDialogListener(new PlayDialog.CustomDialogListener() {
+                    @Override
+                    public void onPositiveClicked(String playTime) {
+
+                        //다이얼로그에 들어온 섭취량 받아와서 played 값 갱신
+                        int playTimeInt = Integer.parseInt(playTime);
+                        played += playTimeInt;
+                        //갱신된 taken 값으로 progress bar 업데이트
+                        String petWeight= reIndent.getStringExtra("petWeight");
+                        int petWeightInt = Integer.parseInt(petWeight);
+                        recommendPT = calculatePlaytime(petWeightInt);
+                        playProgess = played * 100 / recommendPT;
+                        circleProgressBar2=findViewById(R.id.play_circlebar);
+                        circleProgressBar2.setProgress(playProgess);  // 해당 퍼센트를 적용
                     }
 
                     @Override
