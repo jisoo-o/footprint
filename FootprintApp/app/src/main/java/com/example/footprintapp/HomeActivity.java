@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dinuscxj.progressbar.CircleProgressBar;
@@ -37,6 +38,7 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
 
     private TextView recommendedCalories;
     private TextView recommendedPlay;
+    private TextView petName;
     private int maintenanceER;
     private int recommendPT;
     private ImageButton btn_home;
@@ -46,6 +48,8 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
     private Button btn_eat;
     private Button btn_play;
 
+    private String pleaseUri;
+    private String pleaseName;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -60,6 +64,7 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
         if(currentTime == "24:00:00"){
             taken =0;
         }
+        petName = findViewById(R.id.petName);
 
         btn_home = findViewById(R.id.ic_home);
         btn_calendar = findViewById(R.id.ic_calendar);
@@ -81,6 +86,11 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
                 btn_home.setSelected(false);
                 btn_calendar.setSelected(true);
                 btn_setting.setSelected(false);
+                Intent intent3 = new Intent(HomeActivity.this, CalendarActivity.class);
+                intent3.putExtra("uriPlease", pleaseUri);
+                intent3.putExtra("namePlease", pleaseName);
+                finish();
+                startActivity(intent3);
             }
         });
         btn_setting.setOnClickListener(new View.OnClickListener() {
@@ -102,10 +112,12 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
         Intent reIndent = getIntent();
         String text = reIndent.getStringExtra("petName");
         petname.setText(text);
+        pleaseName = text;
 
         String newUri = reIndent.getStringExtra("imageUri");
         Uri mImageUri = Uri.parse(newUri);
         imageview2.setImageURI(mImageUri);
+        pleaseUri = newUri;
 
         // 먹자 dialog
         btn_eat = findViewById(R.id.eat_button);
@@ -193,8 +205,6 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
         recommendedPlay.setText("최소 " + recommendPT + "분은 뛰어 놀고 싶어요");
 
     }
-
-
 
     @Override
     public CharSequence format(int progress, int max) {
