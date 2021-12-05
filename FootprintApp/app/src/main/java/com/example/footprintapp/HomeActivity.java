@@ -89,6 +89,8 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
                 btn_home.setSelected(false);
                 btn_calendar.setSelected(false);
                 btn_setting.setSelected(true);
+                finish();
+                startActivity(new Intent(HomeActivity.this,SettingActivity.class));
             }
         });
 
@@ -189,7 +191,6 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
 
         recommendedCalories.setText("권장 섭취량은 " + maintenanceER + "kcal이에요");
         recommendedPlay.setText("최소 " + recommendPT + "분은 뛰어 놀고 싶어요");
-
 
     }
 
