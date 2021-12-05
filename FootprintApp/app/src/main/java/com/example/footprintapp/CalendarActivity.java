@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,9 @@ public class CalendarActivity extends AppCompatActivity {
 
     private CircleImageView petCircleImage;
     private TextView myPetName;
+    private ImageButton btn_home;
+    private ImageButton btn_calendar;
+    private ImageButton btn_setting;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -22,6 +26,9 @@ public class CalendarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
         petCircleImage = findViewById(R.id.petCircleImage);
         myPetName = findViewById(R.id.passedPetName);
+        btn_home = findViewById(R.id.ic_home);
+        btn_calendar = findViewById(R.id.ic_calendar);
+        btn_setting = findViewById(R.id.ic_setting);
 
         Intent gIndent = getIntent();
         String newUri = gIndent.getStringExtra("uriPlease");
@@ -31,6 +38,34 @@ public class CalendarActivity extends AppCompatActivity {
         String namePlz = gIndent.getStringExtra("namePlease");
         myPetName.setText(namePlz);
 
+        btn_calendar.setSelected(true);
+
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_home.setSelected(true);
+                btn_calendar.setSelected(false);
+                btn_setting.setSelected(false);
+            }
+        });
+        btn_calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_home.setSelected(false);
+                btn_calendar.setSelected(true);
+                btn_setting.setSelected(false);
+            }
+        });
+        btn_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_home.setSelected(false);
+                btn_calendar.setSelected(false);
+                btn_setting.setSelected(true);
+                finish();
+                startActivity(new Intent(CalendarActivity.this,SettingActivity.class));
+            }
+        });
 
     }
 }
