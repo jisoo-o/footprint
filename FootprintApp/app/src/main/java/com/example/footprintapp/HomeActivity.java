@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.dinuscxj.progressbar.CircleProgressBar;
 
 
-public class HomeActivity extends AppCompatActivity implements CircleProgressBar.ProgressFormatter {
+public class HomeActivity extends AppCompatActivity implements CircleProgressBar.ProgressFormatter{
 
     private static final String DEFAULT_PATTERN = "%d%%";
     CircleProgressBar circleProgressBar;
@@ -23,7 +24,7 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
     private TextView petname;
 
     private int eatProgess = 0;
-    private int taken = 180;
+    private int taken = 5;
 
     private int playProgess = 0;
     private int played = 10;
@@ -35,6 +36,9 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
     private ImageButton btn_home;
     private ImageButton btn_calendar;
     private ImageButton btn_setting;
+
+    private Button btn_eat;
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -45,7 +49,7 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
         btn_setting = findViewById(R.id.ic_setting);
 
         btn_home.setSelected(true);
-        
+
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +88,40 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
         Uri mImageUri = Uri.parse(newUri);
         imageview2.setImageURI(mImageUri);
 
+        // 먹자 dialog
+        btn_eat = findViewById(R.id.eat_button);
+        btn_eat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EatDialog dialog = new EatDialog(HomeActivity.this);
+                dialog.setDialogListener(new EatDialog.CustomDialogListener() {
+                    @Override
+                    public void onPositiveClicked(String intake) {
+
+                        //다이얼로그에 들어온 섭취량 받아와서 taken 값 갱
+                        int intakeInt = Integer.parseInt(intake);
+                        taken += intakeInt;
+                        //갱신된 taken 값으로 progress bar 업데이트
+                        String petWeight= reIndent.getStringExtra("petWeight");
+                        int petWeightInt = Integer.parseInt(petWeight);
+                        maintenanceER = calculateCalories(petWeightInt);
+                        recommendPT = calculatePlaytime(petWeightInt);
+
+                        eatProgess = taken * 100 / maintenanceER;
+                        circleProgressBar=findViewById(R.id.eat_circlebar);
+                        circleProgressBar.setProgress(eatProgess);  // 해당 퍼센트를 적용
+                    }
+
+                    @Override
+                    public void onNegativeClicked() {
+
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+        //권장 섭취량, 운동량 계산
         String petWeight= reIndent.getStringExtra("petWeight");
         int petWeightInt = Integer.parseInt(petWeight);
         maintenanceER = calculateCalories(petWeightInt);
@@ -99,7 +137,12 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
 
         recommendedCalories.setText("권장 섭취량은 " + maintenanceER + "kcal이에요");
         recommendedPlay.setText("최소 " + recommendPT + "분은 뛰어 놀고 싶어요");
+
+
     }
+
+
+
     @Override
     public CharSequence format(int progress, int max) {
         return String.format(DEFAULT_PATTERN, (int) ((float) progress / (float) max * 100));
