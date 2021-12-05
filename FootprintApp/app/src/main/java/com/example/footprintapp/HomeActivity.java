@@ -89,6 +89,9 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
                 Intent intent3 = new Intent(HomeActivity.this, CalendarActivity.class);
                 intent3.putExtra("uriPlease", pleaseUri);
                 intent3.putExtra("namePlease", pleaseName);
+                intent3.putExtra("eatPlease", Integer.toString(eatProgess));
+                intent3.putExtra("playPlease", Integer.toString(playProgess));
+
                 finish();
                 startActivity(intent3);
             }

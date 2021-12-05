@@ -16,6 +16,8 @@ public class CalendarActivity extends AppCompatActivity {
 
     private CircleImageView petCircleImage;
     private TextView myPetName;
+    private TextView dayIntake;
+    private TextView dayPlay;
     private ImageButton btn_home;
     private ImageButton btn_calendar;
     private ImageButton btn_setting;
@@ -26,6 +28,8 @@ public class CalendarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
         petCircleImage = findViewById(R.id.petCircleImage);
         myPetName = findViewById(R.id.passedPetName);
+        dayIntake = findViewById(R.id.dayIntake);
+        dayPlay = findViewById(R.id.dayPlay);
         btn_home = findViewById(R.id.ic_home);
         btn_calendar = findViewById(R.id.ic_calendar);
         btn_setting = findViewById(R.id.ic_setting);
@@ -37,6 +41,11 @@ public class CalendarActivity extends AppCompatActivity {
 
         String namePlz = gIndent.getStringExtra("namePlease");
         myPetName.setText(namePlz);
+
+        String eatPlz = gIndent.getStringExtra("eatPlease");
+        dayIntake.setText(eatPlz);
+        String playPlz = gIndent.getStringExtra("playPlease");
+        dayPlay.setText(playPlz);
 
         btn_calendar.setSelected(true);
 
