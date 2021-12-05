@@ -1,11 +1,15 @@
 package com.example.footprintapp;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,6 +20,7 @@ public class SettingActivity extends AppCompatActivity {
     private ImageButton btn_calendar;
     private ImageButton btn_setting;
     private ImageButton btn_logout;
+    private ImageButton btn_signout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,7 @@ public class SettingActivity extends AppCompatActivity {
         btn_calendar = findViewById(R.id.ic_calendar);
         btn_setting = findViewById(R.id.ic_setting);
 
+        btn_signout = findViewById(R.id.signout);
         btn_logout = findViewById(R.id.logout);
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +40,31 @@ public class SettingActivity extends AppCompatActivity {
                 Toast.makeText(SettingActivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
                 finish();
                 startActivity(new Intent(SettingActivity.this, MainActivity.class));
+            }
+        });
+        btn_signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SignoutDialog dialog = new SignoutDialog(SettingActivity.this);
+                //rounded 다이얼로그 띄우기 위해 drawable 추가 외에도 반드시 추가해야하는 코드
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setDialogListener(new SignoutDialog.CustomDialogListener() {
+                    @Override
+                    public void onPositiveClicked() {
+                        FirebaseAuth.getInstance().getCurrentUser().delete(); //회원탈퇴
+                        Toast.makeText(SettingActivity.this, "회원탈퇴가 정상적으로 처리되었습니다.", Toast.LENGTH_SHORT).show();
+                        finish();
+                        startActivity(new Intent(SettingActivity.this, MainActivity.class));
+
+                    }
+
+                    @Override
+                    public void onNegativeClicked() {
+
+                    }
+                });
+                dialog.show();
             }
         });
 
