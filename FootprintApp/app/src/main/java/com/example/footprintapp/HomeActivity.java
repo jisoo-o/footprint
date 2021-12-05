@@ -1,9 +1,12 @@
 package com.example.footprintapp;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -12,6 +15,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dinuscxj.progressbar.CircleProgressBar;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class HomeActivity extends AppCompatActivity implements CircleProgressBar.ProgressFormatter{
@@ -24,10 +31,10 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
     private TextView petname;
 
     private int eatProgess = 0;
-    private int taken = 5;
+    private int taken = 0;
 
     private int playProgess = 0;
-    private int played = 10;
+    private int played = 0;
 
     private TextView recommendedCalories;
     private TextView recommendedPlay;
@@ -39,10 +46,20 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
 
     private Button btn_eat;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //자정 지나면 섭취량 초기화 ??
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
+        String currentTime = dateFormat.toString();
+        if(currentTime == "24:00:00"){
+            taken =0;
+        }
 
         btn_home = findViewById(R.id.ic_home);
         btn_calendar = findViewById(R.id.ic_calendar);
@@ -94,11 +111,14 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
             @Override
             public void onClick(View view) {
                 EatDialog dialog = new EatDialog(HomeActivity.this);
+                //rounded 다이얼로그 띄우기 위해 drawable 추가 외에도 반드시 추가해야하는 코드
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setDialogListener(new EatDialog.CustomDialogListener() {
                     @Override
                     public void onPositiveClicked(String intake) {
 
-                        //다이얼로그에 들어온 섭취량 받아와서 taken 값 갱
+                        //다이얼로그에 들어온 섭취량 받아와서 taken 값 갱신
                         int intakeInt = Integer.parseInt(intake);
                         taken += intakeInt;
                         //갱신된 taken 값으로 progress bar 업데이트
