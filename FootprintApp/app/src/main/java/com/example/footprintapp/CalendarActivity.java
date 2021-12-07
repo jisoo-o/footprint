@@ -68,10 +68,13 @@ public class CalendarActivity extends AppCompatActivity {
             congrats.setText(namePlz + "는 오늘 행복해요!");
         }else if(eat > 50 && play < 50){
             congrats.setText(namePlz + "는 더 뛰어 놀고 싶어요 🥱");
+            congrats.setBackgroundResource(R.drawable.round_blue_button);
         }else if(eat < 50 && play > 50){
             congrats.setText(namePlz + "는 더 먹고 싶어요 🤤");
+            congrats.setBackgroundResource(R.drawable.round_blue_button);
         }else {
             congrats.setText(namePlz + "는 더 먹고, 더 놀고 싶어요 🥲");
+            congrats.setBackgroundResource(R.drawable.round_blue_button);
         }
 
         btn_calendar.setSelected(true);
