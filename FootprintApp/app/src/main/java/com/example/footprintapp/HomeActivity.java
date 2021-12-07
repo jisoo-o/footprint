@@ -205,7 +205,7 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
         circleProgressBar2.setProgress(playProgess);  // 해당 퍼센트를 적용
 
         recommendedCalories.setText("권장 섭취량은 " + maintenanceER + "kcal이에요");
-        recommendedPlay.setText("최소 " + recommendPT + "분은 뛰어 놀고 싶어요");
+        recommendedPlay.setText("최소 " + recommendPT + "분 뛰어 놀고 싶어요");
 
     }
 
