@@ -92,7 +92,7 @@ public class HomeActivity extends AppCompatActivity implements CircleProgressBar
                 intent3.putExtra("eatPlease", Integer.toString(eatProgess));
                 intent3.putExtra("playPlease", Integer.toString(playProgess));
 
-                finish();
+                //finish()2
                 startActivity(intent3);
             }
         });
