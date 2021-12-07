@@ -59,7 +59,13 @@ public class CalendarActivity extends AppCompatActivity {
         int play = Integer.parseInt(playPlz) ;
         if(eat > 99 && play > 99){
             Glide.with(this).load(R.raw.confetti).into(confettiGif);
-            congrats.setText(namePlz + "는 오늘 행복해요 !");
+            confettiGif.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    confettiGif.setVisibility(View.INVISIBLE);
+                }
+            });
+            congrats.setText(namePlz + "는 오늘 행복해요!");
         }else if(eat > 50 && play < 50){
             congrats.setText(namePlz + "는 더 뛰어 놀고 싶어요 🥱");
         }else if(eat < 50 && play > 50){
